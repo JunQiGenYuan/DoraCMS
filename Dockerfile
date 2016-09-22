@@ -1,20 +1,24 @@
 FROM node:latest
 
 # Update apt-get AND apt-get install git
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends apt-utils && rm -rf /var/lib/apt/lists/*
+# RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends apt-utils && rm -rf /var/lib/apt/lists/*
 
 # Create app directory
-RUN mkdir -p /usr/src
-WORKDIR /usr/src
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
 
 # Clone doraCms from git
 # ADD git://github.com/doramart/DoraCMS/archive/master.zip ./
-RUN git clone https://github.com/doramart/DoraCMS.git 
-RUN mv DoraCMS app
-WORKDIR app
+#RUN git clone https://github.com/doramart/DoraCMS.git 
+#RUN mv DoraCMS app
+#WORKDIR app
 
 #Install app dependencies
+COPY package.json /usr/src/app
 RUN npm install --registry=https://registry.npm.taobao.org
+
+# Copy project files
+COPY . /usr/src/app
 
 # Replace db config with the container link name instead of ip
 WORKDIR models/db
