@@ -20,6 +20,10 @@ RUN npm install --registry=https://registry.npm.taobao.org
 # Copy project files
 COPY . /usr/src/app
 
+# Install guide process
+RUN npm install -g forever --registry=https://registry.npm.taobao.org
+
+
 # Replace db config with the container link name instead of ip
 WORKDIR models/db
 RUN sed -i "s/mongodb\:\/\/127\.0\.0\.1/mongodb\:\/\/mongo/g" * && \
@@ -34,4 +38,4 @@ EXPOSE 22
 
 VOLUME /usr/src/app
 
-CMD [ "npm", "start" ]
+CMD [ "forever", "start", "-o", "out.log", "-e", "err.log", "bin/www" ]
