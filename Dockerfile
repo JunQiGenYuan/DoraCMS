@@ -38,4 +38,4 @@ EXPOSE 22
 
 VOLUME /usr/src/app
 
-CMD [ "forever", "start", "-o", "out.log", "-e", "err.log", "bin/www" ]
+CMD [ "forever", "-o", "out.log", "-e", "err.log", "bin/www" ]
