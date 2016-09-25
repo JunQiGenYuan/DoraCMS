@@ -68,4 +68,4 @@ touch $lockFilePath
 
 fi
 
-forever bin/www
+forever -e err.log bin/www
