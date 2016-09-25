@@ -1,6 +1,11 @@
 #!/bin/bash
 lockFilePath=".install.lock"
 
+configArr=(
+    "redis_db=请输入redis数据库名=0"
+    "redis_psd=请输入redis密码=123"
+)
+
 readInput() {
     stty erase "^H"
     if [ ! -n "$2" ]; then
@@ -36,20 +41,25 @@ askAndSetDB() {
 }
 
 askAndSetConfigItem() {
+    #configItemArr=($(echo $1))
+#echo ${configItemArr[1]}
+    #configItemArr=(${str//=/})
+    #echo "$1" | IFS='=' read -r -a configItemArr
+    OLD_IFS=$IFS
     IFS='='
-    echo "$1" | read -r -a configItemArr
+    read -ra configItemArr <<< "$1"
     askAndSetConfig ${configItemArr[0]} ${configItemArr[1]} ${configItemArr[2]}
+    IFS=$OLD_IFS
 }
 
 askAndSetConfigArray() {
+    OLD_IFS=$IFS
+    IFS=' '
     for configItem in ${configArr[*]}; do
         askAndSetConfigItem $configItem
     done
+    IFS=$OLD_IFS
 }
-
-configArr=(
-    "redis_db=请输入redis数据库名=0"
-)
 
 
 if [ ! -f "$lockFilePath" ]; then
