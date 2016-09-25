@@ -143,6 +143,14 @@ router.get('/manage/settings', function (req, res, next) {
     res.render('manage/settings', pageData);
 });
 
+//重启app
+router.put('/manage/power', function(req, res) {
+    if (req.body.status == 'reboot') {
+        system.reboot();
+        res.end('success');
+    }
+});
+
 router.post('/manage/settings', function (req, res, next) {
     system.setSystemSettings(req.body);
     res.end('success');

@@ -41,6 +41,9 @@
                         <a class="btn btn-app" href="/admin/manage/dataManage/m/backUpData">
                             <i class="fa fa-cloud"></i> 数据备份
                         </a>
+                        <a class="btn btn-app" onclick="$.ajax({url: '/admin/manage/power', method: 'PUT', data: {status: 'reboot'}})">
+                           <i class="fa fa-power-off"></i>重启
+                        </a>
                     </div><!-- /.box-body -->
                 </div><!-- /.box -->
             </div><!-- ./col -->

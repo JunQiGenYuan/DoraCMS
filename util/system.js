@@ -26,6 +26,10 @@ var mime = require('../util/mime').types;
 var iconv = require('iconv-lite');
 var system = {
 
+    reboot : function () {
+        child.exec('forever restart bin/www');
+    },
+
     setSystemSettings : function(newSettings) {
         Object.assign(settings, newSettings);
         fs.writeFileSync('customSettings.json', JSON.stringify(newSettings, ' ', 4));
