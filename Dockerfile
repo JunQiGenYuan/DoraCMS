@@ -13,16 +13,16 @@ WORKDIR /usr/src/app
 #RUN mv DoraCMS app
 #WORKDIR app
 
+# Install guide process
+RUN npm install -g forever --registry=https://registry.npm.taobao.org
+
+
 #Install app dependencies
 COPY package.json /usr/src/app
 RUN npm install --registry=https://registry.npm.taobao.org
 
 # Copy project files
 COPY . /usr/src/app
-
-# Install guide process
-RUN npm install -g forever --registry=https://registry.npm.taobao.org
-
 
 # Replace db config with the container link name instead of ip
 WORKDIR models/db
