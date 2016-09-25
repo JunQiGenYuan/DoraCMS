@@ -1,11 +1,5 @@
 lockFilePath=".install.lock"
 
-if [ ! -d "$lockFilePath" ]; then
-
-settingsPath="models/db/settings.js"
-#settingsPath="test.txt"
-settings=$(<$settingsPath)
-
 function readInput() {
     stty erase "^H"
     if [ ! -n "$2" ]; then
@@ -50,6 +44,15 @@ askAndSetConfigArray() {
         askAndSetConfigItem $configItem
     done
 }
+
+
+
+
+if [ ! -d "$lockFilePath" ]; then
+
+settingsPath="models/db/settings.js"
+#settingsPath="test.txt"
+settings=$(<$settingsPath)
 
 configArr=(
     "redis_db=请输入redis数据库名=0"
