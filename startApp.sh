@@ -1,6 +1,7 @@
+#!/bin/bash
 lockFilePath=".install.lock"
 
-function readInput() {
+readInput() {
     stty erase "^H"
     if [ ! -n "$2" ]; then
         msgDefault=""
@@ -35,7 +36,8 @@ askAndSetDB() {
 }
 
 askAndSetConfigItem() {
-    IFS='=' read -r -a configItemArr <<< "$1"
+    IFS='='
+    echo "$1" | read -r -a configItemArr
     askAndSetConfig ${configItemArr[0]} ${configItemArr[1]} ${configItemArr[2]}
 }
 
@@ -45,18 +47,16 @@ askAndSetConfigArray() {
     done
 }
 
+configArr=(
+    "redis_db=请输入redis数据库名=0"
+)
 
 
-
-if [ ! -d "$lockFilePath" ]; then
+if [ ! -f "$lockFilePath" ]; then
 
 settingsPath="models/db/settings.js"
 #settingsPath="test.txt"
 settings=$(<$settingsPath)
-
-configArr=(
-    "redis_db=请输入redis数据库名=0"
-)
 
 askAndSetDB
 
