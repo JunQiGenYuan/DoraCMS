@@ -398,5 +398,8 @@ var adminFunc = {
 
 };
 
+if (settings.IS_ADMIN_AUTH === 'off') {
+    adminFunc.checkAdminPower = function () { return true; };
+}
 
 module.exports = adminFunc;

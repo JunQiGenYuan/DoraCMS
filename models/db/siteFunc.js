@@ -480,7 +480,9 @@ var siteFunc = {
                 }else if(type == 'error'){
                     targetPath = settings.SYSTEMTEMPFORDER + temp.alias + '/public/' + params.page;
                     res.render(targetPath, siteFunc.setDataForError(req, res,  params, temp.alias, defaultTempPath));
-                }
+                }else if (type === 'install') {
+		    targetPath = settings.SYSTEMTEMPFORDER + temp.alias + '/install';
+		}
 
             }else{
                 res.writeHeader(200, {'Content-Type':'text/javascript;charset=UTF-8'});

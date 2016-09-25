@@ -1,0 +1,181 @@
+<div class="row" ng-controller="addContent">
+    <div class="col-xs-12">
+        <div class="box box-default">
+            <div class="box-header">
+                <div class="alert alert-success alert-dismissable fade in hide" role="alert" id="addSuccess">
+                    <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                    <p><i class="icon fa fa-check"></i> <strong>恭喜！</strong>内容添加成功</p>
+                </div>
+                <p class="myInfoBox bg-warning text-warning"><i class="icon fa fa-warning"></i> 信息填写完整无误才可提交</p>
+            </div>
+            <div class="box-body">
+                <form role="form" class="form-horizontal" name="myForm" action="/install" method="POST" ng-submit="processForm(myForm.$valid)" novalidate>
+
+                     <div class="form-group">
+                        <label class="control-label col-sm-3">站点名称</label>
+                        <div class="col-sm-5">
+                            <input type="text" value="<%=settings.SITETITLE%>" class="form-control input-sm" name="SITETITLE" ng-minlength="5" ng-maxlength="50" ng-model="formData.title" required/>
+                        </div>
+                    </div>
+  
+
+                     <div class="form-group">
+                        <label class="control-label col-sm-3">站点域名</label>
+                        <div class="col-sm-5">
+                            <input type="text" value="<%=settings.SITEDOMAIN%>" class="form-control input-sm" name="SITEDOMAIN" ng-minlength="5" ng-maxlength="50" ng-model="formData.title" required/>
+                        </div>
+                    </div>
+  
+
+                     <div class="form-group">
+                        <label class="control-label col-sm-3">站点备案号</label>
+                        <div class="col-sm-5">
+                            <input type="text" value="<%=settings.SITEICP%>" class="form-control input-sm" name="SITEICP" ng-minlength="5" ng-maxlength="50" ng-model="formData.title" required/>
+                        </div>
+                    </div>
+  
+
+                     <div class="form-group">
+                        <label class="control-label col-sm-3">静态资源版本戳</label>
+                        <div class="col-sm-5">
+                            <input type="text" value="<%=settings.SITEVERSION%>" class="form-control input-sm" name="SITEVERSION" ng-minlength="5" ng-maxlength="50" ng-model="formData.title" required/>
+                        </div>
+                    </div>
+  
+
+                     <div class="form-group">
+                        <label class="control-label col-sm-3">管理员个人邮箱</label>
+                        <div class="col-sm-5">
+                            <input type="text" value="<%=settings.SYSTEMMAIL%>" class="form-control input-sm" name="SYSTEMMAIL" ng-minlength="5" ng-maxlength="50" ng-model="formData.title" required/>
+                        </div>
+                    </div>
+  
+
+                     <div class="form-group">
+                        <label class="control-label col-sm-3">默认上传文件夹本地路径</label>
+                        <div class="col-sm-5">
+                            <input type="text" value="<%=settings.UPDATEFOLDER%>" class="form-control input-sm" name="UPDATEFOLDER" ng-minlength="5" ng-maxlength="50" ng-model="formData.title" required/>
+                        </div>
+                    </div>
+  
+
+                     <div class="form-group">
+                        <label class="control-label col-sm-3">模板静态文件路径</label>
+                        <div class="col-sm-5">
+                            <input type="text" value="<%=settings.TEMPSTATICFOLDER%>" class="form-control input-sm" name="TEMPSTATICFOLDER" ng-minlength="5" ng-maxlength="50" ng-model="formData.title" required/>
+                        </div>
+                    </div>
+  
+
+                     <div class="form-group">
+                        <label class="control-label col-sm-3">数据库操作脚本目录</label>
+                        <div class="col-sm-5">
+                            <input type="text" value="<%=settings.DATAOPERATION%>" class="form-control input-sm" name="DATAOPERATION" ng-minlength="5" ng-maxlength="50" ng-model="formData.title" required/>
+                        </div>
+                    </div>
+  
+
+                     <div class="form-group">
+                        <label class="control-label col-sm-3">服务端数据备份目录</label>
+                        <div class="col-sm-5">
+                            <input type="text" value="<%=settings.DATABACKFORDER%>" class="form-control input-sm" name="DATABACKFORDER" ng-minlength="5" ng-maxlength="50" ng-model="formData.title" required/>
+                        </div>
+                    </div>
+  
+
+                     <div class="form-group">
+                        <label class="control-label col-sm-3">LINUXmongodb环境变量(win</label>
+                        <div class="col-sm-5">
+                            <input type="text" value="<%=settings.MONGODBEVNPATH%>" class="form-control input-sm" name="MONGODBEVNPATH" ng-minlength="5" ng-maxlength="50" ng-model="formData.title" required/>
+                        </div>
+                    </div>
+  
+
+                     <div class="form-group">
+                        <label class="control-label col-sm-3">系统模板安装目录</label>
+                        <div class="col-sm-5">
+                            <input type="text" value="<%=settings.SYSTEMTEMPFORDER%>" class="form-control input-sm" name="SYSTEMTEMPFORDER" ng-minlength="5" ng-maxlength="50" ng-model="formData.title" required/>
+                        </div>
+                    </div>
+  
+
+                     <div class="form-group">
+                        <label class="control-label col-sm-3">系统服务提供商</label>
+                        <div class="col-sm-5">
+                            <input type="text" value="<%=settings.DORACMSAPI%>" class="form-control input-sm" name="DORACMSAPI" ng-minlength="5" ng-maxlength="50" ng-model="formData.title" required/>
+                        </div>
+                    </div>
+  
+
+                     <div class="form-group">
+                        <label class="control-label col-sm-3">站点描述</label>
+                        <div class="col-sm-5">
+                            <input type="text" value="<%=settings.CMSDISCRIPTION%>" class="form-control input-sm" name="CMSDISCRIPTION" ng-minlength="5" ng-maxlength="50" ng-model="formData.title" required/>
+                        </div>
+                    </div>
+  
+
+                     <div class="form-group">
+                        <label class="control-label col-sm-3">关键词</label>
+                        <div class="col-sm-5">
+                            <input type="text" value="<%=settings.SITEKEYWORDS%>" class="form-control input-sm" name="SITEKEYWORDS" ng-minlength="5" ng-maxlength="50" ng-model="formData.title" required/>
+                        </div>
+                    </div>
+  
+
+                     <div class="form-group">
+                        <label class="control-label col-sm-3">基础关键词</label>
+                        <div class="col-sm-5">
+                            <input type="text" value="<%=settings.SITEBASICKEYWORDS%>" class="form-control input-sm" name="SITEBASICKEYWORDS" ng-minlength="5" ng-maxlength="50" ng-model="formData.title" required/>
+                        </div>
+                    </div>
+
+<input type="submit" value="提交">
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+    <!--添加用户组模态窗口-->
+    <div class="modal fade" id="addContentTags">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">新增标签</h4>
+                </div>
+                <div class="modal-body">
+                    <form role="form" class="form-horizontal" name="tagForm" ng-submit="addNewTagForm(tagForm.$valid)" novalidate>
+                        <div class="form-group">
+                            <label class="control-label col-sm-4">标签名称</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" name="name" ng-model="tagFormData.name" ng-minlength="1" ng-maxlength="12" required/>
+                                <label for="inputError" class="control-label text-danger" ng-show="tagForm.name.$invalid && !tagForm.name.$pristine"><i class="fa fa-times-circle-o"></i> 1-12个非特殊字符</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-4">别名</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" name="alias" ng-model="tagFormData.alias" ng-pattern="/^[a-zA-Z][a-zA-Z0-9_]{2,11}$/" required/>
+                                <label for="inputError" class="control-label text-danger" ng-show="tagForm.alias.$invalid && !tagForm.alias.$pristine"><i class="fa fa-times-circle-o"></i> 2-12个英文字符</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-4">标签备注</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" name="comments" ng-model="tagFormData.comments" ng-minlength="1" ng-maxlength="30" required/>
+                                <label for="inputError" class="control-label text-danger" ng-show="tagForm.comments.$invalid && !tagForm.comments.$pristine"><i class="fa fa-times-circle-o"></i> 备注不能为空</label>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary" ng-disabled="tagForm.$invalid">提交</button>
+                        </div>
+                    </form>
+
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+    </div>
+</div>
+

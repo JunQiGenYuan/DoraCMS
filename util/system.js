@@ -26,6 +26,11 @@ var mime = require('../util/mime').types;
 var iconv = require('iconv-lite');
 var system = {
 
+    setSystemSettings : function(newSettings) {
+        Object.assign(settings, newSettings);
+        fs.writeFileSync('customSettings.json', JSON.stringify(newSettings, ' ', 4));
+    },
+
     sendEmail : function(key,obj,callBack){
 
         var emailTitle = "Hello";

@@ -316,6 +316,7 @@ function initDelOption($scope,$http,info){
 function setAdminPowerTreeData(){
     return [
         { id:'sysTemManage', pId:0, name:"系统管理", open:true},
+        { id:'sysTemManage_settings_view', pId:'sysTemManage', name:"系统配置管理"},
         { id:'sysTemManage_user', pId:'sysTemManage', name:"系统用户管理", open:true},
         { id:'sysTemManage_user_add', pId:'sysTemManage_user', name:"新增"},
         { id:'sysTemManage_user_view', pId:'sysTemManage_user', name:"查看"},

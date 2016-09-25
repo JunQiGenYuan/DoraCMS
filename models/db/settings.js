@@ -4,7 +4,10 @@
  * 该模块只会被加载一次
  */
 
-module.exports = {
+var fs = require('fs');
+
+
+var defaultSettings = {
 
     // debug 为 true 时，用于本地调试
     debug: false,
@@ -12,14 +15,16 @@ module.exports = {
     session_secret: 'doracms_secret', // 务必修改
     auth_cookie_name: 'doracms',
     encrypt_key : 'dora',
+
 //    数据库配置
-    URL: 'mongodb://127.0.0.1:27017/doracms',
+    URL: 'mongodb://mongo:27017/doracms',
     DB: 'doracms',
     HOST: '',
     PORT: 27017,
     USERNAME: '',
     PASSWORD: '',
 
+    IS_ADMIN_AUTH: 'off',
 
 //    站点基础信息配置
     SITETITLE : '前端开发俱乐部', // 站点名称
@@ -39,7 +44,8 @@ module.exports = {
     SITEBASICKEYWORDS : '前端开发俱乐部,前端开发,前端俱乐部,DoraCMS', // 基础关键词
 
 
-    SYSTEMMANAGE : ['sysTemManage','DoraCMS后台管理'],  // 后台模块(系统管理)
+    SYSTEMMANAGE : ['sysTemManage','CMS后台管理'],  // 后台模块(系统管理)
+    settings : ['sysTemManage_settings','站点配置'], // 站点配置
     adminUsersList : ['sysTemManage_user','系统用户管理'],
     adminGroupList : ['sysTemManage_uGroup','系统用户组管理'],
     adsList : ['sysTemManage_ads','广告管理'],
@@ -68,7 +74,7 @@ module.exports = {
     regUsersList: ['userManage_user','注册用户管理'],
 
 //    本地缓存设置
-    redis_host: '127.0.0.1',
+    redis_host: 'redis',
     redis_port: 6379,
     redis_psd : '',
     redis_db: 0,
@@ -92,4 +98,22 @@ module.exports = {
 };
 
 
+function getCustomSettings() {
+    var customSettings = {};
+    var customSettingsStr;
+    var customSettingsFilePath = 'customSettings.json';
 
+    if (fs.existsSync(customSettingsFilePath)) {
+        customSettingsStr = fs.readFileSync(customSettingsFilePath);
+    }
+    if (customSettingsStr) {
+        try {
+            customSettings = JSON.parse(customSettingsStr);
+        } catch (e) {
+            customSettings = {};
+        }
+    }
+    return customSettings;
+}
+
+module.exports = Object.assign(defaultSettings, getCustomSettings());
